@@ -1,0 +1,48 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinTrafico", "SinTrafico.Xamarin\SinTrafico.csproj", "{3B832400-6157-4FE5-89CE-BAC106847395}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SinTrafico.Xamarin", "SinTrafico.Xamarin", "{F9E1EBA8-732F-4C0A-876F-08E60DA6E4E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinTrafico.Xamarin.Forms", "SinTrafico.Xamarin.Forms\SinTrafico.Xamarin.Forms.csproj", "{F3CFB76F-CE33-4BC9-BC00-B4E261EB32C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinTrafico.Xamarin.iOS", "SinTrafico.Xamarin.iOS\SinTrafico.Xamarin.iOS.csproj", "{9AF6B732-1A0E-4479-A801-FFC365C4D7CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinTrafico.Xamarin.Android", "SinTrafico.Xamarin.Android\SinTrafico.Xamarin.Android.csproj", "{1448F773-6275-44DE-BE50-16B736E77F2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinTrafico.Test", "SinTrafico.Test\SinTrafico.Test.csproj", "{4A9ACAE8-F584-44B9-95EA-63542B77B24A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B832400-6157-4FE5-89CE-BAC106847395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B832400-6157-4FE5-89CE-BAC106847395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B832400-6157-4FE5-89CE-BAC106847395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B832400-6157-4FE5-89CE-BAC106847395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3CFB76F-CE33-4BC9-BC00-B4E261EB32C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3CFB76F-CE33-4BC9-BC00-B4E261EB32C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3CFB76F-CE33-4BC9-BC00-B4E261EB32C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3CFB76F-CE33-4BC9-BC00-B4E261EB32C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AF6B732-1A0E-4479-A801-FFC365C4D7CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AF6B732-1A0E-4479-A801-FFC365C4D7CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AF6B732-1A0E-4479-A801-FFC365C4D7CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AF6B732-1A0E-4479-A801-FFC365C4D7CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1448F773-6275-44DE-BE50-16B736E77F2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1448F773-6275-44DE-BE50-16B736E77F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1448F773-6275-44DE-BE50-16B736E77F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1448F773-6275-44DE-BE50-16B736E77F2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A9ACAE8-F584-44B9-95EA-63542B77B24A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A9ACAE8-F584-44B9-95EA-63542B77B24A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A9ACAE8-F584-44B9-95EA-63542B77B24A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A9ACAE8-F584-44B9-95EA-63542B77B24A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F3CFB76F-CE33-4BC9-BC00-B4E261EB32C7} = {F9E1EBA8-732F-4C0A-876F-08E60DA6E4E2}
+		{9AF6B732-1A0E-4479-A801-FFC365C4D7CC} = {F9E1EBA8-732F-4C0A-876F-08E60DA6E4E2}
+		{1448F773-6275-44DE-BE50-16B736E77F2C} = {F9E1EBA8-732F-4C0A-876F-08E60DA6E4E2}
+	EndGlobalSection
+EndGlobal
