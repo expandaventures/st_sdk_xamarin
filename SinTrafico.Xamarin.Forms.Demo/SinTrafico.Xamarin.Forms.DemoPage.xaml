@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SinTrafico.Xamarin.Forms.Demo"
+    x:Class="SinTrafico.Xamarin.Forms.Demo.SinTrafico_Xamarin_Forms_DemoPage"
+    xmlns:sintrafico="clr-namespace:SinTrafico.Xamarin.Forms;assembly=SinTrafico.Xamarin.Forms">
+    <sintrafico:SinTraficoMap x:Name="myMap" />
+</ContentPage>

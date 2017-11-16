@@ -44,7 +44,7 @@ namespace SinTrafico
             }
         }
 
-        public static void SetApiToken(string apiKey)
+        public static void SetApiKey(string apiKey)
         {
             _apiKey = apiKey;
             _httpClient.DefaultRequestHeaders.Accept.Clear();
@@ -81,7 +81,7 @@ namespace SinTrafico
             {
                 errorMessage = UNAUTHORIZED_ERROR_MESSAGE;
             }
-            else if(result.StatusCode == HttpStatusCode.NotFound)
+            else if (result.StatusCode == HttpStatusCode.NotFound)
             {
                 errorMessage = NOTFOUND_ERROR_MESSAGE;
             }

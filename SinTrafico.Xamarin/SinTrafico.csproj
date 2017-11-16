@@ -4,10 +4,11 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
-  </ItemGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols></DebugSymbols>
+    <OutputPath></OutputPath>
+    <RunWithWarnings>true</RunWithWarnings>
+  </PropertyGroup>
   <ItemGroup>
     <Folder Include="Contracts\" />
     <Folder Include="Models\" />
@@ -15,5 +16,9 @@
     <Folder Include="Enums\" />
     <Folder Include="Helpers\" />
     <Folder Include="Responses\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
   </ItemGroup>
 </Project>

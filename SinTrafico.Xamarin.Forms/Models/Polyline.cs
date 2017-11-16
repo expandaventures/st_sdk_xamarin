@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace SinTrafico.Xamarin.Forms
@@ -11,7 +12,7 @@ namespace SinTrafico.Xamarin.Forms
         // Static Fields
         //
         public static readonly BindableProperty LineColorProperty = BindableProperty.Create(nameof(LineColor), typeof(Color), typeof(Polyline), Color.Red);
-        public static readonly BindableProperty LineWidthProperty = BindableProperty.Create(nameof(LineWidth), typeof(double), typeof(Polyline), 1);
+        public static readonly BindableProperty LineWidthProperty = BindableProperty.Create(nameof(LineWidth), typeof(double), typeof(Polyline), 5.0);
 
         //
         // Fields
@@ -21,6 +22,9 @@ namespace SinTrafico.Xamarin.Forms
         //
         // Properties
         //
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Id { get; set; }
+
         public IList<Position> Points
         {
             get

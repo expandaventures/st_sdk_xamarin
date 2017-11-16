@@ -12,21 +12,21 @@ namespace SinTrafico.Test
         [Fact]
         public void VerifyEmptyApiKey()
         {
-            ServiceClient.SetApiToken(null);
+            ServiceClient.SetApiKey(null);
             Assert.True(string.IsNullOrWhiteSpace(ServiceClient.ApiKey));
         }
 
         [Fact]
         public void VerifyApiKey()
         {
-            ServiceClient.SetApiToken(DEMO_API_KEY);
+            ServiceClient.SetApiKey(DEMO_API_KEY);
             Assert.False(string.IsNullOrWhiteSpace(ServiceClient.ApiKey));
         }
 
         [Fact]
         public async Task RoutesRequestWithoutApiKey()
         {
-            ServiceClient.SetApiToken(null);             var request = new RouteRequest(new Position(19.385994, -99.192323));             request.End = new Position(19.458232, -99.113169);
+            ServiceClient.SetApiKey(null);             var request = new RouteRequest(new Position(19.385994, -99.192323));             request.End = new Position(19.458232, -99.113169);
             var service = new RoutesServiceClient();             var result = await service.GetRoutes(request);
             Assert.True(result.StatusCode == HttpStatusCode.Unauthorized);
         }
@@ -34,7 +34,7 @@ namespace SinTrafico.Test
         [Fact]
         public async Task RoutesRequestWithApiKey()
         {
-            ServiceClient.SetApiToken(DEMO_API_KEY);
+            ServiceClient.SetApiKey(DEMO_API_KEY);
             var request = new RouteRequest(new Position(19.385994, -99.192323));
             request.End = new Position(19.458232, -99.113169);
             var service = new RoutesServiceClient();
@@ -45,7 +45,7 @@ namespace SinTrafico.Test
         [Fact]
         public async Task PoisRequestWithoutApiKey()
         {
-            ServiceClient.SetApiToken(null);
+            ServiceClient.SetApiKey(null);
             var request = new PoiRequest();
             request.SetBounds(19.00001, -99.99999, 19.99999, -99.000001);
             request.Query = "MI";
@@ -59,7 +59,7 @@ namespace SinTrafico.Test
         [Fact]
         public async Task PoisRequestWithApiKey()
         {
-            ServiceClient.SetApiToken("a816b7b3cc5314fd70bf9188f2cf1d7c9972eda55f2151e4d2d1151f4fa64dff");
+            ServiceClient.SetApiKey("a816b7b3cc5314fd70bf9188f2cf1d7c9972eda55f2151e4d2d1151f4fa64dff");
             var request = new PoiRequest();             request.SetBounds(19.00001, -99.99999, 19.99999, -99.000001);             request.Query = "MI";             request.Category = 3;             request.City = 1;
             var service = new PoisServiceClient();             var result = await service.GetPois(request);
             Assert.True(result.StatusCode == HttpStatusCode.OK);
