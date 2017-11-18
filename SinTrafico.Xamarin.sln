@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinTrafico.Xamarin.Forms.De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinTrafico.Xamarin.Forms.Demo", "SinTrafico.Xamarin.Forms.Demo\SinTrafico.Xamarin.Forms.Demo.csproj", "{7DCF4C24-E254-421F-8D24-C4E11AFE803D}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SinTrafico.Xamarin.Shared", "SinTrafico.Xamarin.Shared\SinTrafico.Xamarin.Shared.shproj", "{FF548BD1-B1C4-45AC-98EC-6F327D2C63EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,5 +137,6 @@ Global
 		{7C76FAD1-703E-4297-9DFD-B5E4BA5EB9ED} = {05640D3E-3338-49A8-87B6-78F99B268F83}
 		{BC1E4A13-46BA-4F7A-84C7-2C464ECDF1E0} = {05640D3E-3338-49A8-87B6-78F99B268F83}
 		{7DCF4C24-E254-421F-8D24-C4E11AFE803D} = {05640D3E-3338-49A8-87B6-78F99B268F83}
+		{FF548BD1-B1C4-45AC-98EC-6F327D2C63EC} = {F9E1EBA8-732F-4C0A-876F-08E60DA6E4E2}
 	EndGlobalSection
 EndGlobal

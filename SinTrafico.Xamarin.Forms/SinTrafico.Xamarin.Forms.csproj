@@ -8,9 +8,9 @@
     <ProjectReference Include="..\SinTrafico.Xamarin\SinTrafico.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms.Maps" Version="2.4.0.74863" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="2.5.0.91635" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />

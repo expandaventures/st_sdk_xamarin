@@ -22,6 +22,7 @@ namespace SinTrafico.Xamarin.Forms.Demo.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            global::Xamarin.FormsMaps.Init(this, bundle);
 
             SinTraficoMapRenderer.Init();
 

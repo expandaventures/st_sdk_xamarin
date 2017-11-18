@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Threading.Tasks;
 using CoreLocation;
 using MapKit;
 using SinTrafico.Xamarin.Forms;
 using SinTrafico.Xamarin.iOS;
+using SinTrafico.Xamarin.Shared.Extentions;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps.iOS;
 using Xamarin.Forms.Platform.iOS;
@@ -120,29 +122,9 @@ namespace SinTrafico.Xamarin.iOS
             }
         }
 
-        protected override IMKAnnotation CreateAnnotation(global::Xamarin.Forms.Maps.Pin pin)
-        {
-            var extendedPin = pin as SinTraficoPin;
-            if(extendedPin != null)
-            {
-                if (extendedPin.Icon == null)
-                {
-                    return new SinTraficoMKPointAnnotation(extendedPin);
-                }
-                else
-                {
-                    
-                }
-                return base.CreateAnnotation(pin);
-            }
-            return base.CreateAnnotation(pin);
-        }
+        protected override IMKAnnotation CreateAnnotation(global::Xamarin.Forms.Maps.Pin pin) => (pin is SinTraficoPin) ? new SinTraficoMKPointAnnotation(pin as SinTraficoPin) : base.CreateAnnotation(pin);
 
-        protected virtual MKPolyline CreatePolyline(Polyline polyline)
-        {
-            var coordinates = polyline.Points.Select(pos => new CLLocationCoordinate2D(pos.Latitude, pos.Longitude)).ToArray();
-            return MKPolyline.FromCoordinates(coordinates);
-        }
+        protected virtual MKPolyline CreatePolyline(Polyline polyline) => MKPolyline.FromCoordinates(polyline.Points.Select(pos => new CLLocationCoordinate2D(pos.Latitude, pos.Longitude)).ToArray());
 
         MKOverlayRenderer GetOverlayRenderer(MKMapView mapView, IMKOverlay overlayWrapper)
         {
@@ -169,9 +151,34 @@ namespace SinTrafico.Xamarin.iOS
             view.CanShowCallout = true;
             if(extAnnotation != null)
             {
-                view.PinTintColor = extAnnotation.Pin.PinColor.ToUIColor();
+                if (extAnnotation.Pin.Icon == null)
+                {
+                    view.PinTintColor = extAnnotation.Pin.PinColor.ToUIColor();
+                }
+                else
+                {
+                    Task.Run(async () => await LoadPinSourceAsync(view, extAnnotation.Pin));
+                }
             }
             return view;
+        }
+
+        async Task LoadPinSourceAsync(MKPinAnnotationView nativePinView, SinTraficoPin extendedPin)
+        {
+            var nativeImage = await extendedPin.Icon.GetNativeSourceAsync();
+            if (extendedPin.Id == null)
+            {
+                await Task.Delay(10);
+            }
+
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                var markerToUpdate = Control.Annotations.FirstOrDefault((IMKAnnotation m) => m == extendedPin.Id);
+                if (markerToUpdate != null && nativeImage != null)
+                {
+                    nativePinView.Image = nativeImage;
+                }
+            });
         }
     }
 }
