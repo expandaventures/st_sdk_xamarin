@@ -36,7 +36,7 @@ namespace SinTrafico.Xamarin.Shared.Extentions
 #if __IOS__
         internal static Task<UIImage> GetNativeSourceAsync(this ImageSource source) => source.GetHandler().LoadImageAsync(source);
 #elif __ANDROID__
-        internal static Task<Bitmap> GetNativeSourceAsync(this ImageSource source, Context context) => handler.LoadImageAsync(source, context);
+        internal static Task<Bitmap> GetNativeSourceAsync(this ImageSource source, Context context) => source.GetHandler().LoadImageAsync(source, context);
 #endif
     }
 }
