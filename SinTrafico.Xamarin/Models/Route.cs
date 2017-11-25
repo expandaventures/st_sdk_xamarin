@@ -16,12 +16,19 @@ namespace SinTrafico
         public List<Leg> Legs { get; set; }
 
         [JsonProperty("geometry")]
-        public Geometry Geometry { get; set; }
+        public object Geometry { get; set; }
+
+        [JsonProperty("pois")]
+        public Pois Pois { get; set; }
 
         [JsonProperty("summary")]
         public string Summary { get; set; }
 
         [JsonProperty("cost")]
-        public object Cost { get; set; }
+        public double? Cost { get; set; }
+
+        public string AsPolyline() => Geometry as string;
+
+        public Geometry AsGeometry() => Geometry as Geometry;
     }
 }

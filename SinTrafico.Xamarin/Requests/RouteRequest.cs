@@ -30,12 +30,6 @@ namespace SinTrafico
         public int? PoiSet { get; set; }
 
         /// <summary>
-        /// The type of poi that should be found along the route. Range 0-3
-        /// </summary>
-        /// <value>PoiSet</value>
-        public int? PoiIn { get; set; }
-
-        /// <summary>
         /// Departure time in 24-hour format
         /// </summary>
         /// <value>DepartureTime</value>
@@ -64,6 +58,12 @@ namespace SinTrafico
         /// </summary>
         /// <value>Tolls</value>
         public bool? Tolls { get; set; }
+
+        /// <summary>
+        /// If true, Gas stations information will be included if any
+        /// </summary>
+        /// <value>GasStations</value>
+        public bool? GasStations { get; set; }
 
         /// <summary>
         /// Indicate the price that should be used to calculate toll total
@@ -105,7 +105,7 @@ namespace SinTrafico
         /// If polyline, route geometry and every step will be returned encoded in Google polyline format, otherwise in GeoJSON format
         /// </summary>
         /// <value>Geometry</value>
-        public string Geometry { get; set; }
+        public GeometryType? Geometry { get; set; }
 
         /// <summary>
         /// If true, weather information will be included in each step of the route
@@ -134,10 +134,6 @@ namespace SinTrafico
             {
                 query += $"&poi_set[]={PoiSet.Value}";
             }
-            if (PoiIn.HasValue)
-            {
-                query += $"&poi_in[]={PoiIn.Value}";
-            }
             if (DepartureTime.HasValue)
             {
                 query += $"&departure_time={DepartureTime.Value.ToUniversalTime().ToString("HH:mm")}";
@@ -154,17 +150,21 @@ namespace SinTrafico
             {
                 query += $"&save={Save.Value}";
             }
+            if (Parkings.HasValue)
+            {
+                query += $"&poi_in[]=0";
+            }
             if (Tolls.HasValue)
             {
-                query += $"&tolls={Tolls.Value}";
+                query += $"&poi_in[]=1";
+            }
+            if (GasStations.HasValue)
+            {
+                query += $"&poi_in[]=2";
             }
             if(VehicleType.HasValue)
             {
                 query += $"&vehicle_type={(uint)VehicleType.Value}";
-            }
-            if (Parkings.HasValue)
-            {
-                query += $"&parkings={Parkings.Value}";
             }
             if (!string.IsNullOrWhiteSpace(UserId))
             {
@@ -182,9 +182,9 @@ namespace SinTrafico
             {
                 query += $"&arrival_time={ArrivalTime.Value.ToUniversalTime().ToString("HH:mm")}";
             }
-            if (!string.IsNullOrWhiteSpace(Geometry))
+            if (Geometry.HasValue)
             {
-                query += $"&geometry={Geometry}";
+                query += $"&geometry={Geometry.Value.GetDescription()}";
             }
             if (Weather.HasValue)
             {

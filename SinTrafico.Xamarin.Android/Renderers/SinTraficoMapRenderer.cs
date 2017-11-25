@@ -146,11 +146,11 @@ namespace SinTrafico.Xamarin.Android
             {
                 if (extendedPin.Icon == null)
                 {
-                    Task.Run(async () => await LoadPinColorResource(extendedPin));
+                    LoadPinColorResource(extendedPin);
                 }
                 else
                 {
-                    Task.Run(async () => await LoadPinSourceAsync(extendedPin));
+                    LoadPinSourceAsync(extendedPin);
                 }
             }
             return base.CreateMarker(pin); ;
@@ -187,7 +187,6 @@ namespace SinTrafico.Xamarin.Android
                     using (var b = bitmapdraw.Bitmap)
                     {
                         var customMarker = global::Android.Graphics.Bitmap.CreateScaledBitmap(b, 63, 102, false);
-
                         Device.BeginInvokeOnMainThread(() =>
                         {
                             markerToUpdate.SetIcon(BitmapDescriptorFactory.FromBitmap(customMarker));
@@ -205,14 +204,24 @@ namespace SinTrafico.Xamarin.Android
             {
                 await Task.Delay(10);
             }
+            double width = nativeImage.Width;
+            double height = nativeImage.Height;
+            if(height < 100)
+            {
+                double heightFactor = (1 * 100) / height;
+                height = height * heightFactor;
+                width = width * heightFactor;
+            }
+            var customMarker = global::Android.Graphics.Bitmap.CreateScaledBitmap(nativeImage, (int)width, (int)height, false);
+            nativeImage.Dispose();
 
             var markers = GetInterMarkersList();
             var markerToUpdate = markers.FirstOrDefault((Marker m) => m.Id == (string)extendedPin.Id);
-            if (markerToUpdate != null && nativeImage != null)
+            if (markerToUpdate != null && customMarker != null)
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    markerToUpdate.SetIcon(BitmapDescriptorFactory.FromBitmap(nativeImage));
+                    markerToUpdate.SetIcon(BitmapDescriptorFactory.FromBitmap(customMarker));
                 });
             }
         }

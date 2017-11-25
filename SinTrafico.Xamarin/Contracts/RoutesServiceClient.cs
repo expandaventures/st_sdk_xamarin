@@ -12,6 +12,6 @@ namespace SinTrafico
         {
         }
 
-        public Task<Reponse<RouteResponse>> GetRoutes(RouteRequest request) => GetResponseDataAsync<RouteResponse>($"{SEGMENT}{request.BuildQuery()}");
+        public Task<Response<RouteResponse>> GetRoutes(RouteRequest request) => GetResponseDataAsync<RouteResponse>($"{SEGMENT}{request.BuildQuery()}");
     }
 }

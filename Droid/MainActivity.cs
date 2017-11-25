@@ -8,6 +8,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using SinTrafico.Xamarin.Android;
+using Plugin.Permissions;
 
 namespace SinTrafico.Xamarin.Forms.Demo.Droid
 {
@@ -27,6 +28,11 @@ namespace SinTrafico.Xamarin.Forms.Demo.Droid
             SinTraficoMapRenderer.Init();
 
             LoadApplication(new App());
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

@@ -13,12 +13,16 @@ namespace SinTrafico
         public double Distance { get; set; }
 
         [JsonProperty("geometry")]
-        public Geometry Geometry { get; set; }
+        public object Geometry { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("intersections")]
         public List<Intersection> Intersections { get; set; }
+
+        public string AsPolyline() => Geometry as string;
+
+        public Geometry AsGeometry() => Geometry as Geometry;
     }
 }

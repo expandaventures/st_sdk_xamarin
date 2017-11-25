@@ -12,6 +12,6 @@ namespace SinTrafico
         {
         }
 
-        public Task<Reponse<PoiResponse>> GetPois(PoiRequest request) => GetResponseDataAsync<PoiResponse>($"{SEGMENT}{request.BuildQuery()}");
+        public Task<Response<PoiResponse>> GetPois(PoiRequest request) => GetResponseDataAsync<PoiResponse>($"{SEGMENT}{request.BuildQuery()}");
     }
 }

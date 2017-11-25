@@ -3,9 +3,9 @@ using System.Net;
 
 namespace SinTrafico
 {
-    public class Reponse<T>
+    public class Response<T>
     {
-        internal Reponse(T result, HttpStatusCode statusCode, string errorMessage = null)
+        internal Response(T result, HttpStatusCode statusCode, string errorMessage = null)
         {
             Result = result;
             StatusCode = statusCode;

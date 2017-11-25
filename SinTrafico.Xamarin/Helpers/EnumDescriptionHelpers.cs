@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace SinTrafico.Helpers
 {
-    internal static class TransportTypeHelpers
+    internal static class EnumDescriptionHelpers
     {
         static string GetCustomDescription(object objEnum)
         {

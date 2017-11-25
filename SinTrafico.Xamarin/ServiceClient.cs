@@ -10,6 +10,14 @@ namespace SinTrafico
 {
     public static class ServiceClient
     {
+        #region PinImageSource
+
+        public const string PARKING_ICON_URL = "http://s3.amazonaws.com/sintrafico/images/iconos_estacionamiento.png";
+        public const string BOOTH_ICON_URL = "http://s3.amazonaws.com/sintrafico/images/iconos_peaje.png";
+        public const string GASSTATION_ICON_URL = "http://s3.amazonaws.com/sintrafico/images/iconos_gas.png";
+
+        #endregion
+
         public const string BASE_URL = "http://api.sintrafico.com";
         public const string INVALID_INPUT_ERROR_MESSAGE = "Invalid input";
         public const string UNAUTHORIZED_ERROR_MESSAGE = "Unauthorized access";
@@ -63,7 +71,7 @@ namespace SinTrafico
 
         internal static T DeSerializeObject<T>(string json) => JsonConvert.DeserializeObject<T>(json);
 
-        internal static async Task<Reponse<T>> GetResponseDataAsync<T>(string segment)
+        internal static async Task<Response<T>> GetResponseDataAsync<T>(string segment)
         {
             var result = await GetDataAsync(segment);
             T resultItem = default(T);
@@ -85,7 +93,7 @@ namespace SinTrafico
             {
                 errorMessage = NOTFOUND_ERROR_MESSAGE;
             }
-            return new Reponse<T>(resultItem, result.StatusCode, errorMessage);
+            return new Response<T>(resultItem, result.StatusCode, errorMessage);
         }
     }
 }
