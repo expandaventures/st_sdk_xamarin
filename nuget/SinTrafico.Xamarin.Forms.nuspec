@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SinTrafico.Xamarin.Forms</id>
+    <version>1.0.0</version>
+    <authors>SinTrafico</authors>
+    <owners>SinTrafico</owners>
+    <tags>xamarin forms xamarin.forms sintrafico sin trafico</tags>
+    <licenseUrl>http://sintrafico.com/license</licenseUrl>
+    <iconUrl>http://sintrafico.com/static/favicon/favicon.ico</iconUrl>
+    <projectUrl>http://sintrafico.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Xamarin.Forms Client for SinTrafico API</description>
+    <copyright>Copyright 2017</copyright>
+    <dependencies>
+        <group targetFramework="net">
+            <dependency id="Microsoft.Net.Http" version="2.2.29"/>
+            <dependency id="Newtonsoft.Json" version="10.0.3"/>
+            <dependency id="Xamarin.Forms.Maps" version="2.5.0.91635"/>
+            <dependency id="Xam.Plugin.Geolocator" version="4.1.3"/>
+            <dependency id="SinTrafico" version="1.0.0"/>
+        </group>
+        <group targetFramework="netstandard1.0">
+            <dependency id="Microsoft.Net.Http" version="2.2.29"/>
+            <dependency id="Newtonsoft.Json" version="10.0.3"/>
+            <dependency id="Xamarin.Forms.Maps" version="2.5.0.91635"/>
+            <dependency id="Xam.Plugin.Geolocator" version="4.1.3"/>
+            <dependency id="SinTrafico" version="1.0.0"/>
+        </group>
+        <group targetFramework="MonoAndroid10">
+            <dependency id="Newtonsoft.Json" version="10.0.3"/>
+            <dependency id="Xamarin.Forms.Maps" version="2.5.0.91635"/>
+            <dependency id="Xam.Plugin.Geolocator" version="4.1.3"/>
+            <dependency id="SinTrafico" version="1.0.0"/>
+        </group>
+        <group targetFramework="Xamarin.iOS10">
+            <dependency id="Newtonsoft.Json" version="10.0.3"/>
+            <dependency id="Xamarin.Forms.Maps" version="2.5.0.91635"/>
+            <dependency id="Xam.Plugin.Geolocator" version="4.1.3"/>
+            <dependency id="SinTrafico" version="1.0.0"/>
+        </group>
+        <group targetFramework="portable-net45+win+wpa81+wp80">
+            <dependency id="Microsoft.Net.Http" version="2.2.29"/>
+            <dependency id="Newtonsoft.Json" version="10.0.3"/>
+            <dependency id="Xamarin.Forms.Maps" version="2.5.0.91635"/>
+            <dependency id="Xam.Plugin.Geolocator" version="4.1.3"/>
+            <dependency id="SinTrafico" version="1.0.0"/>
+        </group>
+        <group targetFramework="dotnet">
+            <dependency id="Microsoft.Net.Http" version="2.2.29"/>
+            <dependency id="Newtonsoft.Json" version="10.0.3"/>
+            <dependency id="Xamarin.Forms.Maps" version="2.5.0.91635"/>
+            <dependency id="Xam.Plugin.Geolocator" version="4.1.3"/>
+            <dependency id="SinTrafico" version="1.0.0"/>
+        </group>
+    </dependencies>
+    <releaseNotes>
+      See: http://sintrafico.com/desarrolladores
+    </releaseNotes>
+  </metadata>
+  <files>
+    <!--PCL-->
+    <file src="../SinTrafico.Xamarin.Forms/bin/Release/SinTrafico.Xamarin.*" target="lib/portable-win+net45+wp80+win81+wpa81" />
+
+    <!--netstandard-->
+    <file src="../SinTrafico.Xamarin.Forms/bin/Release/SinTrafico.Xamarin.*" target="lib/netstandard1.0" />
+
+    <!--Android-->
+    <file src="../SinTrafico.Xamarin.Android/bin/Release/SinTrafico.Xamarin.*" target="lib/MonoAndroid10" />
+
+    <!--iPhone Unified-->
+    <file src="../SinTrafico.Xamarin.iOS/bin/Release/SinTrafico.Xamarin.*" target="lib/Xamarin.iOS10" />
+  </files>
+</package>

@@ -22,6 +22,7 @@ using System.Net.Http;
 using System.IO;
 using Android.Graphics.Drawables;
 using SinTrafico.Xamarin.Shared.Extentions;
+using Android.Content;
 
 [assembly: ExportRenderer(typeof(SinTraficoMap), typeof(SinTraficoMapRenderer))]
 namespace SinTrafico.Xamarin.Android
@@ -41,7 +42,7 @@ namespace SinTrafico.Xamarin.Android
             var dummy = DateTime.Now;
         }
 
-        public SinTraficoMapRenderer()
+        public SinTraficoMapRenderer(Context context): base(context)
         {
         }
 
@@ -146,11 +147,11 @@ namespace SinTrafico.Xamarin.Android
             {
                 if (extendedPin.Icon == null)
                 {
-                    LoadPinColorResource(extendedPin);
+                    LoadPinColorResource(extendedPin).ConfigureAwait(false);
                 }
                 else
                 {
-                    LoadPinSourceAsync(extendedPin);
+                    LoadPinSourceAsync(extendedPin).ConfigureAwait(false);
                 }
             }
             return base.CreateMarker(pin); ;

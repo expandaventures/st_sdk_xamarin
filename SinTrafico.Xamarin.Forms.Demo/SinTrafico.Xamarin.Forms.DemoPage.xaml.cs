@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using SinTrafico.Xamarin.Forms.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
@@ -15,20 +16,21 @@ namespace SinTrafico.Xamarin.Forms.Demo
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            //var request = new RouteRequest(new Position(19.29883, -99.39606));
-            //request.End = new Position(19.41360, -99.14660);
-            //request.Parkings = true;
-            //request.Tolls = true;
-            //request.GasStations = true;
-            //request.VehicleType = VehicleType.Car;
-            //request.Transport = TransportType.Car;
-            //request.Geometry = GeometryType.GeoJson;
-            //await myMap.LoadRouteAsync(request, Color.DeepPink, 10);
+            var routeRequest = new RouteRequest(new Position(19.29883, -99.39606));
+            routeRequest.End = new Position(19.41360, -99.14660);
+            routeRequest.Parkings = true;
+            routeRequest.Tolls = true;
+            routeRequest.GasStations = true;
+            routeRequest.VehicleType = VehicleType.Car;
+            routeRequest.Transport = TransportType.Car;
+            routeRequest.Geometry = GeometryType.GeoJson;
+            await myMap.LoadRouteAsync(routeRequest, Color.DeepPink, 10);
+
             SinTrafico.ServiceClient.SetApiKey("a816b7b3cc5314fd70bf9188f2cf1d7c9972eda55f2151e4d2d1151f4fa64dff");
-            var request = new PoiRequest();
-            request.Query = "Mi";
-            request.SetBounds(19.00001,-99.99999,19.99999, -99.999999);
-            await myMap.LoadPoisAsync(request);
+            var poiRequest = new PoiRequest();
+            poiRequest.Query = "Mi";
+            poiRequest.SetBounds(19.00001,-99.99999,19.99999, -99.999999);
+            await myMap.LoadPoisAsync(poiRequest);
         }
     }
 }

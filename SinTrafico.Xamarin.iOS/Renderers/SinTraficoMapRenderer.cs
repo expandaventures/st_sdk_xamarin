@@ -157,7 +157,7 @@ namespace SinTrafico.Xamarin.iOS
                 }
                 else
                 {
-                    LoadPinSourceAsync(view, extAnnotation.Pin);
+                    LoadPinSourceAsync(view, extAnnotation.Pin).ConfigureAwait(false);
                 }
             }
             return view;

@@ -99,12 +99,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SinTrafico.Xamarin\SinTrafico.csproj">
-      <Project>{3B832400-6157-4FE5-89CE-BAC106847395}</Project>
+    <ProjectReference Include="..\SinTrafico\SinTrafico.csproj">
+      <Project>{6E71A64F-84D2-42F6-8CAB-F3D846D8482F}</Project>
       <Name>SinTrafico</Name>
     </ProjectReference>
     <ProjectReference Include="..\SinTrafico.Xamarin.Forms\SinTrafico.Xamarin.Forms.csproj">
-      <Project>{F3CFB76F-CE33-4BC9-BC00-B4E261EB32C7}</Project>
+      <Project>{7A916330-9A32-452E-AF53-D050C93EE569}</Project>
       <Name>SinTrafico.Xamarin.Forms</Name>
     </ProjectReference>
   </ItemGroup>
