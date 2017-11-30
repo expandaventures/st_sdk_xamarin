@@ -25,6 +25,12 @@ namespace SinTrafico.Xamarin.Forms
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Id { get; set; }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsGeoJson { get; set; }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GeoJson { get; set; }
+
         public IList<Position> Points
         {
             get
@@ -44,5 +50,11 @@ namespace SinTrafico.Xamarin.Forms
             get => (double)base.GetValue(Polyline.LineWidthProperty);
             set => base.SetValue(Polyline.LineWidthProperty, value);
         }
+
+        public static Polyline FromGeoJson(string geoJson) => new Polyline
+        {
+            IsGeoJson = true,
+            GeoJson = geoJson
+        };
     }
 }

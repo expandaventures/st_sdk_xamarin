@@ -17,6 +17,10 @@ namespace SinTrafico.Xamarin.Forms.Extensions
 
         public static async Task<Response<RouteResponse>> LoadRouteAsync(this SinTraficoMap map, RouteRequest request, Color lineColor, double lineWidth = 1, bool loadPois = true)
         {
+            if(Device.RuntimePlatform == Device.Android)
+            {
+                request.Geometry = GeometryType.GeoJson;
+            }
             var service = new RoutesServiceClient();
             var response = await service.GetRoutes(request);
             if (response.Result != null)
@@ -28,13 +32,22 @@ namespace SinTrafico.Xamarin.Forms.Extensions
                         LineColor = lineColor,
                         LineWidth = lineWidth
                     };
-                    foreach (var leg in route.Legs)
+                    if (Device.RuntimePlatform == Device.Android)
                     {
-                        foreach (var step in leg.Steps)
+                        polyline = Polyline.FromGeoJson(route.AsGeoJson());
+                        polyline.LineColor = lineColor;
+                        polyline.LineWidth = lineWidth;
+                    }
+                    else
+                    {
+                        foreach (var leg in route.Legs)
                         {
-                            foreach (var inter in step.Intersections)
+                            foreach (var step in leg.Steps)
                             {
-                                polyline.Points.Add(new Position(inter.Location[1], inter.Location[0]));
+                                foreach (var inter in step.Intersections)
+                                {
+                                    polyline.Points.Add(new Position(inter.Location[1], inter.Location[0]));
+                                }
                             }
                         }
                     }

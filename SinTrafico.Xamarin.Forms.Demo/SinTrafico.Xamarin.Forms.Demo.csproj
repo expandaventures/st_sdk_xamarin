@@ -66,12 +66,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SinTrafico">
-      <HintPath>..\packages\SinTrafico.1.0.0\lib\portable-win+net45+wp80+win81+wpa81\SinTrafico.dll</HintPath>
-    </Reference>
-    <Reference Include="SinTrafico.Xamarin.Forms">
-      <HintPath>..\packages\SinTrafico.Xamarin.Forms.1.0.0\lib\portable-win+net45+wp80+win81+wpa81\SinTrafico.Xamarin.Forms.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -83,6 +77,16 @@
     <EmbeddedResource Include="SinTrafico.Xamarin.Forms.DemoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SinTrafico\SinTrafico.csproj">
+      <Project>{6E71A64F-84D2-42F6-8CAB-F3D846D8482F}</Project>
+      <Name>SinTrafico</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SinTrafico.Xamarin.Forms\SinTrafico.Xamarin.Forms.csproj">
+      <Project>{7A916330-9A32-452E-AF53-D050C93EE569}</Project>
+      <Name>SinTrafico.Xamarin.Forms</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.5.0.91635\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.5.0.91635\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />

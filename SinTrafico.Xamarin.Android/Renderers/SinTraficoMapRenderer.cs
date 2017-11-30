@@ -10,7 +10,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Maps.Android;
 using Xamarin.Forms.Platform.Android;
-using NativePolyline = Android.Gms.Maps.Model.Polyline;
 using NativePosition = Android.Gms.Maps.Model.LatLng;
 using BitmapDescriptorFactory = Android.Gms.Maps.Model.BitmapDescriptorFactory;
 using BitmapDescriptor = Android.Gms.Maps.Model.BitmapDescriptor;
@@ -23,6 +22,7 @@ using System.IO;
 using Android.Graphics.Drawables;
 using SinTrafico.Xamarin.Shared.Extentions;
 using Android.Content;
+using GoogleMapsUtils.Android.Data.Geojson;
 
 [assembly: ExportRenderer(typeof(SinTraficoMap), typeof(SinTraficoMapRenderer))]
 namespace SinTrafico.Xamarin.Android
@@ -35,7 +35,7 @@ namespace SinTrafico.Xamarin.Android
 
         public new SinTraficoMap Element => base.Element as SinTraficoMap;
 
-        List<NativePolyline> _polylines;
+        List<GeoJsonLayer> _polylines;
 
         public static void Init()
         {
@@ -76,7 +76,7 @@ namespace SinTrafico.Xamarin.Android
                     AddPolylines(e.NewItems);
                     break;
                 case NotifyCollectionChangedAction.Reset:
-                    _polylines?.ForEach(m => m.Remove());
+                    _polylines?.ForEach(m => m.RemoveLayerFromMap());
                     _polylines = null;
                     AddPolylines((IList)Element.PolyLines);
                     break;
@@ -95,14 +95,18 @@ namespace SinTrafico.Xamarin.Android
             }
             if (this._polylines == null)
             {
-                this._polylines = new List<NativePolyline>();
+                this._polylines = new List<GeoJsonLayer>();
             }
+
             this._polylines.AddRange(items.Cast<Polyline>().Select(p =>
             {
-                var options = this.CreatePolyline(p);
-                var poly = map.AddPolyline(options);
-                p.Id = poly.Id;
-                return poly;
+                var json = "{'type': 'Feature', 'geometry': " + p.GeoJson + ", 'properties': { 'color': '#" + p.LineColor.GetHexString() + "' }}";
+                var layer = this.CreatePolyline(json);
+                layer.DefaultLineStringStyle.Color = p.LineColor.ToAndroid().ToArgb();
+                layer.DefaultLineStringStyle.SetLineStringWidth((float)p.LineWidth);
+                layer.AddLayerToMap();
+                p.Id = layer;
+                return layer;
             }));
         }
 
@@ -122,10 +126,10 @@ namespace SinTrafico.Xamarin.Android
                 while (enumerator.MoveNext())
                 {
                     Polyline p = (Polyline)enumerator.Current;
-                    var polyline = this._polylines.FirstOrDefault((NativePolyline m) => m.Id == (string)p.Id);
+                    var polyline = this._polylines.FirstOrDefault((GeoJsonLayer m) => m == p.Id);
                     if (polyline != null)
                     {
-                        polyline.Remove();
+                        polyline.RemoveLayerFromMap();
                         this._polylines.Remove(polyline);
                     }
                 }
@@ -157,10 +161,7 @@ namespace SinTrafico.Xamarin.Android
             return base.CreateMarker(pin); ;
         }
 
-        protected virtual global::Android.Gms.Maps.Model.PolylineOptions CreatePolyline(Polyline polyline) => new global::Android.Gms.Maps.Model.PolylineOptions()
-                                         .Add(polyline.Points.Select(point => new NativePosition(point.Latitude, point.Longitude)).ToArray())
-                                         .InvokeWidth((float)polyline.LineWidth)
-                                         .InvokeColor(polyline.LineColor.ToAndroid().ToArgb());
+        protected virtual GeoJsonLayer CreatePolyline(string json) => new GeoJsonLayer(NativeMap, new Org.Json.JSONObject(json));
 
         //TODO: review in the future if there's a better way to achieve this
         async Task LoadPinColorResource(SinTraficoPin extendedPin)

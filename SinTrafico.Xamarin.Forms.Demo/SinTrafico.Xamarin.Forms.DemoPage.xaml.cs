@@ -23,7 +23,6 @@ namespace SinTrafico.Xamarin.Forms.Demo
             routeRequest.GasStations = true;
             routeRequest.VehicleType = VehicleType.Car;
             routeRequest.Transport = TransportType.Car;
-            routeRequest.Geometry = GeometryType.GeoJson;
             await myMap.LoadRouteAsync(routeRequest, Color.DeepPink, 10);
 
             SinTrafico.ServiceClient.SetApiKey("a816b7b3cc5314fd70bf9188f2cf1d7c9972eda55f2151e4d2d1151f4fa64dff");

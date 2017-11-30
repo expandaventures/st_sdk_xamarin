@@ -27,7 +27,7 @@ namespace SinTrafico
         [JsonProperty("cost")]
         public double? Cost { get; set; }
 
-        public string AsPolyline() => Geometry as string;
+        public string AsGeoJson() => Geometry.ToString();
 
         public Geometry AsGeometry() => Geometry as Geometry;
     }

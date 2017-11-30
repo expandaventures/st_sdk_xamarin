@@ -123,15 +123,6 @@
     <Reference Include="Plugin.Geolocator">
       <HintPath>..\packages\Xam.Plugin.Geolocator.4.1.3\lib\Xamarin.iOS10\Plugin.Geolocator.dll</HintPath>
     </Reference>
-    <Reference Include="SinTrafico">
-      <HintPath>..\packages\SinTrafico.1.0.0\lib\Xamarin.iOS10\SinTrafico.dll</HintPath>
-    </Reference>
-    <Reference Include="SinTrafico.Xamarin.Forms">
-      <HintPath>..\packages\SinTrafico.Xamarin.Forms.1.0.0\lib\Xamarin.iOS10\SinTrafico.Xamarin.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="SinTrafico.Xamarin.iOS">
-      <HintPath>..\packages\SinTrafico.Xamarin.Forms.1.0.0\lib\Xamarin.iOS10\SinTrafico.Xamarin.iOS.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -156,6 +147,18 @@
     <ProjectReference Include="..\SinTrafico.Xamarin.Forms.Demo\SinTrafico.Xamarin.Forms.Demo.csproj">
       <Project>{9603E83F-9797-4DC6-AC69-6B8012F9561E}</Project>
       <Name>SinTrafico.Xamarin.Forms.Demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SinTrafico\SinTrafico.csproj">
+      <Project>{6E71A64F-84D2-42F6-8CAB-F3D846D8482F}</Project>
+      <Name>SinTrafico</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SinTrafico.Xamarin.Forms\SinTrafico.Xamarin.Forms.csproj">
+      <Project>{7A916330-9A32-452E-AF53-D050C93EE569}</Project>
+      <Name>SinTrafico.Xamarin.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SinTrafico.Xamarin.iOS\SinTrafico.Xamarin.iOS.csproj">
+      <Project>{9AF6B732-1A0E-4479-A801-FFC365C4D7CC}</Project>
+      <Name>SinTrafico.Xamarin.iOS</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
