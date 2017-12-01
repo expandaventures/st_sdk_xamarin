@@ -109,12 +109,7 @@ namespace SinTrafico.Xamarin.Forms.Extensions
             {
                 foreach (var poi in response.Result.Pois)
                 {
-                    var poiPin = new SinTraficoPin();
-                    poiPin.Label = poi.Name;
-                    poiPin.Address = poi.Category;
-                    poiPin.PinColor = Color.Azure;
-                    poiPin.Position = new FormsPosition(poi.Latitude, poi.Longitude);
-                    map.Pins.Add(poiPin);
+                    map.Pins.Add(poi.ToSinTraficoPin());
                 }
             }
             return response;

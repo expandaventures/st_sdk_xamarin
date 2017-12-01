@@ -33,6 +33,7 @@
     <Compile Include="Models\SinTraficoPin.cs" />
     <Compile Include="GeoLocator.cs" />
     <Compile Include="Extensions\SinTraficoMapExtensions.cs" />
+    <Compile Include="Extensions\PoiExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SinTrafico\SinTrafico.csproj">

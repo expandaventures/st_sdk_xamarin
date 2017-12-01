@@ -12,9 +12,31 @@ namespace SinTrafico
     {
         #region PinImageSource
 
-        public const string PARKING_ICON_URL = "http://s3.amazonaws.com/sintrafico/images/iconos_estacionamiento.png";
-        public const string BOOTH_ICON_URL = "http://s3.amazonaws.com/sintrafico/images/iconos_peaje.png";
-        public const string GASSTATION_ICON_URL = "http://s3.amazonaws.com/sintrafico/images/iconos_gas.png";
+        public const string PIN_BASE_URL = "https://s3.amazonaws.com/sintrafico/images/";
+        public const string PARKING_ICON_URL = PIN_BASE_URL + "iconos_estacionamiento.png";
+        public const string BOOTH_ICON_URL = PIN_BASE_URL + "iconos_peaje.png";
+        public const string GASSTATION_ICON_URL = PIN_BASE_URL + "iconos_gas.png";
+        public const string ACCIDENT_ICON_URL = PIN_BASE_URL + "iconos_accidente.png";
+        public const string BADACCIDENT_ICON_URL = PIN_BASE_URL + "iconos_accidente.png";
+        public const string ROADWORK_ICON_URL = PIN_BASE_URL + "iconos_obras.png";
+        public const string FLOOD_ICON_URL = PIN_BASE_URL + "iconos_inundacion.png";
+        public const string PROTEST_ICON_URL = PIN_BASE_URL + "iconos_manifestacion.png";
+        public const string STRIKE_ICON_URL = PIN_BASE_URL + "iconos_manifestacion.png";
+        public const string EVENT_ICON_URL = PIN_BASE_URL + "iconos_evento.png";
+        public const string INCIDENT_ICON_URL = PIN_BASE_URL + "iconos_reporte.png";
+        public const string PEREGRINATION_ICON_URL = PIN_BASE_URL + "iconos_peregrinacion.png";
+        public const string BROKENVEHICLE_ICON_URL = PIN_BASE_URL + "iconos_vehiculo_descompuesto.png";
+        public const string MARKET_ICON_URL = PIN_BASE_URL + "iconos_mercado.png";
+        public const string ONOFFCUT_ICON_URL = PIN_BASE_URL + "iconos_reporte.png";
+        public const string WRONGWAY_ICON_URL = PIN_BASE_URL + "iconos_contraflujo.png";
+        public const string OPEN_ICON_URL = PIN_BASE_URL + "iconos_abierto.png";
+        public const string ALERTS_ICON_URL = PIN_BASE_URL + "iconos_alerta.png";
+        public const string MOBILIZATION_ICON_URL = PIN_BASE_URL + "iconos_movilizacion.png";
+        public const string MXSUBWAY_ICON_URL = PIN_BASE_URL + "iconos_alerta.png";
+        public const string MXMETROBUS_ICON_URL = PIN_BASE_URL + "iconos_alerta.png";
+        public const string GDLLIGHTRAIL_ICON_URL = PIN_BASE_URL + "iconos_alerta.png";
+        public const string GDLMACROBUS_ICON_URL = PIN_BASE_URL + "iconos_alerta.png";
+        public const string DEFAULT_ICON_URL = PIN_BASE_URL + "iconos_reporte.png";
 
         #endregion
 
