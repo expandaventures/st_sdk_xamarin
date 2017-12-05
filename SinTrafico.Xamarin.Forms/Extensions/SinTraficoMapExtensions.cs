@@ -15,7 +15,7 @@ namespace SinTrafico.Xamarin.Forms.Extensions
             "t_camion7", "t_camion8", "t_camion9", "t_eje_pes", "fecha_act"
         };
 
-        public static async Task<Response<RouteResponse>> LoadRouteAsync(this SinTraficoMap map, RouteRequest request, Color lineColor, double lineWidth = 1, bool loadPois = true)
+        public static async Task<Response<RouteResponse>> LoadRouteAsync(this SinTraficoMap map, RouteRequest request, Color lineColor, double lineWidth = 1)
         {
             if(Device.RuntimePlatform == Device.Android)
             {
@@ -52,47 +52,56 @@ namespace SinTrafico.Xamarin.Forms.Extensions
                         }
                     }
                     map.PolyLines.Add(polyline);
-                    if (loadPois && route.Pois != null)
+                    if (route.Pois != null)
                     {
                         var poisData = route.Pois;
                         if (poisData != null)
                         {
-                            foreach (var parking in poisData.Parkings)
+                            if (request.Parkings.HasValue && request.Parkings.Value && poisData.Parkings != null)
                             {
-                                var parkingPin = new SinTraficoPin();
-                                parkingPin.Label = "Tarifas no disponibles";
-                                parkingPin.Address = parking.Address;
-                                parkingPin.Icon = ServiceClient.PARKING_ICON_URL;
-                                parkingPin.Position = new FormsPosition(parking.Geometry.Coordinates[1], parking.Geometry.Coordinates[0]);
-                                map.Pins.Add(parkingPin);
-                            }
-                            foreach (var booth in poisData.Tolls)
-                            {
-                                var boothPin = new SinTraficoPin();
-                                var pinTitle = "";
-                                try
+                                foreach (var parking in poisData.Parkings)
                                 {
-                                    var priceIndex = (int)request.VehicleType + 4;
-                                    pinTitle = $"{_rateBoothFields[priceIndex]}: ${booth.Rates[priceIndex]}";
+                                    var parkingPin = new SinTraficoPin();
+                                    parkingPin.Label = "Tarifas no disponibles";
+                                    parkingPin.Address = parking.Address;
+                                    parkingPin.Icon = ServiceClient.PARKING_ICON_URL;
+                                    parkingPin.Position = new FormsPosition(parking.Geometry.Coordinates[1], parking.Geometry.Coordinates[0]);
+                                    map.Pins.Add(parkingPin);
                                 }
-                                catch
-                                {
-                                    pinTitle = "Tarifas no disponibles";
-                                }
-                                boothPin.Label = pinTitle;
-                                boothPin.Address = booth.Address;
-                                boothPin.Icon = ServiceClient.BOOTH_ICON_URL;
-                                boothPin.Position = new FormsPosition(booth.Geometry.Coordinates[1], booth.Geometry.Coordinates[0]);
-                                map.Pins.Add(boothPin);
                             }
-                            foreach (var gasStation in poisData.GasStations)
+                            if (request.Tolls.HasValue && request.Tolls.Value && poisData.Tolls != null)
                             {
-                                var gasStationPin = new SinTraficoPin();
-                                gasStationPin.Label = "Tarifas no disponibles";
-                                gasStationPin.Address = gasStation.Address;
-                                gasStationPin.Icon = ServiceClient.GASSTATION_ICON_URL;
-                                gasStationPin.Position = new FormsPosition(gasStation.Geometry.Coordinates[1], gasStation.Geometry.Coordinates[0]);
-                                map.Pins.Add(gasStationPin);
+                                foreach (var booth in poisData.Tolls)
+                                {
+                                    var boothPin = new SinTraficoPin();
+                                    var pinTitle = "";
+                                    try
+                                    {
+                                        var priceIndex = (int)request.VehicleType + 4;
+                                        pinTitle = $"{_rateBoothFields[priceIndex]}: ${booth.Rates[priceIndex]}";
+                                    }
+                                    catch
+                                    {
+                                        pinTitle = "Tarifas no disponibles";
+                                    }
+                                    boothPin.Label = pinTitle;
+                                    boothPin.Address = booth.Address;
+                                    boothPin.Icon = ServiceClient.BOOTH_ICON_URL;
+                                    boothPin.Position = new FormsPosition(booth.Geometry.Coordinates[1], booth.Geometry.Coordinates[0]);
+                                    map.Pins.Add(boothPin);
+                                }
+                            }
+                            if (request.GasStations.HasValue && request.GasStations.Value && poisData.GasStations != null)
+                            {
+                                foreach (var gasStation in poisData.GasStations)
+                                {
+                                    var gasStationPin = new SinTraficoPin();
+                                    gasStationPin.Label = "Tarifas no disponibles";
+                                    gasStationPin.Address = gasStation.Address;
+                                    gasStationPin.Icon = ServiceClient.GASSTATION_ICON_URL;
+                                    gasStationPin.Position = new FormsPosition(gasStation.Geometry.Coordinates[1], gasStation.Geometry.Coordinates[0]);
+                                    map.Pins.Add(gasStationPin);
+                                }
                             }
                         }
                     }
@@ -105,7 +114,7 @@ namespace SinTrafico.Xamarin.Forms.Extensions
         {
             var service = new PoisServiceClient();
             var response = await service.GetPois(request);
-            if (response.Result != null && response.Result.Pois.Any())
+            if (response.Result != null && response.Result.Pois != null && response.Result.Pois.Any())
             {
                 foreach (var poi in response.Result.Pois)
                 {
