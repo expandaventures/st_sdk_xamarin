@@ -23,11 +23,13 @@ using Android.Graphics.Drawables;
 using SinTrafico.Xamarin.Shared.Extentions;
 using Android.Content;
 using GoogleMapsUtils.Android.Data.Geojson;
+using Map = SinTrafico.Xamarin.Forms.SinTraficoMap;
+using Pin = SinTrafico.Xamarin.Forms.Models.Pin;
 
 [assembly: ExportRenderer(typeof(SinTraficoMap), typeof(SinTraficoMapRenderer))]
 namespace SinTrafico.Xamarin.Android
 {
-    public class SinTraficoMapRenderer : MapRenderer
+    public class SinTraficoMapRenderer : SinTrafico.Xamarin.Android.Renderers.MapRenderer
     {
         static HttpClient _defaultHttpClient = new HttpClient();
 
@@ -42,7 +44,7 @@ namespace SinTrafico.Xamarin.Android
             var dummy = DateTime.Now;
         }
 
-        public SinTraficoMapRenderer(Context context): base(context)
+        public SinTraficoMapRenderer(): base()
         {
         }
 
@@ -158,7 +160,7 @@ namespace SinTrafico.Xamarin.Android
                     LoadPinSourceAsync(extendedPin).ConfigureAwait(false);
                 }
             }
-            return base.CreateMarker(pin); ;
+            return base.CreateMarker(pin);
         }
 
         protected virtual GeoJsonLayer CreatePolyline(string json) => new GeoJsonLayer(NativeMap, new Org.Json.JSONObject(json));
@@ -230,7 +232,7 @@ namespace SinTrafico.Xamarin.Android
 
         List<Marker> GetInterMarkersList()
         {
-            var markersField = typeof(MapRenderer).GetField("_markers", BindingFlags.Instance | BindingFlags.NonPublic);
+            var markersField = typeof(SinTrafico.Xamarin.Android.Renderers.MapRenderer).GetField("_markers", BindingFlags.Instance | BindingFlags.NonPublic);
             return (List<Marker>)markersField.GetValue(this) ?? new List<Marker>();
         }
     }

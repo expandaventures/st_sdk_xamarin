@@ -4,7 +4,7 @@ using Xamarin.Forms.Maps;
 
 namespace SinTrafico.Xamarin.Forms
 {
-    public class SinTraficoPin : Pin
+    public class SinTraficoPin : SinTrafico.Xamarin.Forms.Models.Pin
     {
         //
         // Static Fields

@@ -16,7 +16,7 @@ using Xamarin.Forms.Platform.iOS;
 [assembly: ExportRenderer(typeof(SinTraficoMap), typeof(SinTraficoMapRenderer))]
 namespace SinTrafico.Xamarin.iOS
 {
-    public class SinTraficoMapRenderer : MapRenderer
+    public class SinTraficoMapRenderer : SinTrafico.Xamarin.iOS.Renderers.MapRenderer
     {
 
         public new SinTraficoMap Element => base.Element as SinTraficoMap;
@@ -122,7 +122,7 @@ namespace SinTrafico.Xamarin.iOS
             }
         }
 
-        protected override IMKAnnotation CreateAnnotation(global::Xamarin.Forms.Maps.Pin pin) => (pin is SinTraficoPin) ? new SinTraficoMKPointAnnotation(pin as SinTraficoPin) : base.CreateAnnotation(pin);
+        protected override IMKAnnotation CreateAnnotation(SinTrafico.Xamarin.Forms.Models.Pin pin) => (pin is SinTraficoPin) ? new SinTraficoMKPointAnnotation(pin as SinTraficoPin) : base.CreateAnnotation(pin);
 
         protected virtual MKPolyline CreatePolyline(Polyline polyline) => MKPolyline.FromCoordinates(polyline.Points.Select(pos => new CLLocationCoordinate2D(pos.Latitude, pos.Longitude)).ToArray());
 
