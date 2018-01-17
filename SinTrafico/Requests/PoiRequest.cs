@@ -1,4 +1,5 @@
 ﻿using System;
+using SinTrafico.Helpers;
 
 namespace SinTrafico
 {
@@ -39,6 +40,18 @@ namespace SinTrafico
         public int? City { get; set; }
 
         /// <summary>
+        /// Gets or sets the origin.
+        /// </summary>
+        /// <value>The origin.</value>
+        public Position Origin { get; set; }
+
+        /// <summary>
+        /// String indicating the means used for the route
+        /// </summary>
+        /// <value>Transport</value>
+        public TransportType? Transport { get; set; }
+
+        /// <summary>
         /// Define a rectangle to limit reports inside.
         /// </summary>
         /// <param name="minLat">Minimum lat.</param>
@@ -69,6 +82,14 @@ namespace SinTrafico
             if (City.HasValue)
             {
                 query += $"&city={City.Value}";
+            }
+            if(Origin != null)
+            {
+                query += $"&origin={Origin.ToString()}";  
+            }
+            if (Transport.HasValue)
+            {
+                query += $"&transport={Transport.Value.GetDescription()}";
             }
             return query;
         }

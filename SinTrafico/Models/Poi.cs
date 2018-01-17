@@ -28,5 +28,8 @@ namespace SinTrafico
 
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("eta")]
+        public double Eta { get; set; }
     }
 }

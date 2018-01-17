@@ -29,6 +29,7 @@ namespace SinTrafico.Xamarin.Forms.Demo
             var poiRequest = new PoiRequest();
             poiRequest.Query = "Mi";
             poiRequest.SetBounds(19.00001,-99.99999,19.99999, -99.999999);
+            poiRequest.Origin = new Position(19.29883, -99.39606);
             await myMap.LoadPoisAsync(poiRequest);
         }
     }
