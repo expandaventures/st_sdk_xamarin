@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>SinTrafico.Xamarin.Forms</id>
+    <id>SinTrafico.Xamarin.Forms.Old</id>
     <version>1.0.0</version>
     <authors>SinTrafico</authors>
     <owners>SinTrafico</owners>
@@ -10,7 +10,7 @@
     <iconUrl>http://sintrafico.com/static/favicon/favicon.ico</iconUrl>
     <projectUrl>http://sintrafico.com</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Xamarin.Forms Client for SinTrafico API</description>
+    <description>Xamarin.Forms 2.3.4.267 Client for SinTrafico API</description>
     <copyright>Copyright 2017</copyright>
     <dependencies>
         <group targetFramework="net">
