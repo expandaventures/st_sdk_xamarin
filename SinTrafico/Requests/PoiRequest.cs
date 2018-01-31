@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using SinTrafico.Helpers;
 
 namespace SinTrafico
@@ -52,6 +53,12 @@ namespace SinTrafico
         public TransportType? Transport { get; set; }
 
         /// <summary>
+        /// Gets or sets the distance.
+        /// </summary>
+        /// <value>The distance.</value>
+        public double? Distance { get; set; }
+
+        /// <summary>
         /// Define a rectangle to limit reports inside.
         /// </summary>
         /// <param name="minLat">Minimum lat.</param>
@@ -90,6 +97,10 @@ namespace SinTrafico
             if (Transport.HasValue)
             {
                 query += $"&transport={Transport.Value.GetDescription()}";
+            }
+            if (Distance.HasValue)
+            {
+                query += $"&distance={Distance.Value}";
             }
             return query;
         }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using SinTrafico.Xamarin.Forms.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -30,7 +31,15 @@ namespace SinTrafico.Xamarin.Forms.Demo
             poiRequest.Query = "Mi";
             poiRequest.SetBounds(19.00001,-99.99999,19.99999, -99.999999);
             poiRequest.Origin = new Position(19.29883, -99.39606);
-            await myMap.LoadPoisAsync(poiRequest);
+            poiRequest.Distance = 1;
+            var response = await myMap.LoadPoisAsync(poiRequest);
+            if(response != null && response.Result != null && response.Result.Pois != null && response.Result.Pois.Any())
+            {
+                foreach(var poi in response.Result.Pois)
+                {
+                    var disntace = poi.Distance;
+                }
+            }
         }
     }
 }
