@@ -31,5 +31,8 @@ namespace SinTrafico
 
         [JsonProperty("eta")]
         public double Eta { get; set; }
+
+        [JsonProperty("distance")]
+        public double Distance { get; set; }
     }
 }
