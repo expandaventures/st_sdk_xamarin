@@ -1,25 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace SinTrafico
 {
-    public class Toll
+    public class UserPoi
     {
+        [JsonProperty("category")]
+        public string Category { get; set; }
+
         [JsonProperty("geometry")]
         public PoiGeometry Geometry { get; set; }
 
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("rates")]
-        public List<object> Rates { get; set; }
+        [JsonProperty("metadata")]
+        public Metadata Metadata { get; set; }
 
         [JsonProperty("id")]
         public int Id { get; set; }
 
-        [JsonProperty("address")]
-        public string Address { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
         [JsonProperty("eta")]
         public double Eta { get; set; }

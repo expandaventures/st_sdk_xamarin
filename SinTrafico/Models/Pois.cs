@@ -14,5 +14,8 @@ namespace SinTrafico
 
         [JsonProperty("gas_stations")]
         public List<GasStation> GasStations { get; set; }
+
+        [JsonProperty("user_poi")]
+        public List<UserPoi> UserPois { get; set; }
     }
 }

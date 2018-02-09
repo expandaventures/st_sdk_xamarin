@@ -15,6 +15,14 @@ namespace SinTrafico.Xamarin.Forms.Extensions
             "t_camion7", "t_camion8", "t_camion9", "t_eje_pes", "fecha_act"
         };
 
+        /// <summary>
+        /// Loads the route async.
+        /// </summary>
+        /// <returns>The route response async.</returns>
+        /// <param name="map">Map.</param>
+        /// <param name="request">Request.</param>
+        /// <param name="lineColor">Line color.</param>
+        /// <param name="lineWidth">Line width.</param>
         public static async Task<Response<RouteResponse>> LoadRouteAsync(this SinTraficoMap map, RouteRequest request, Color lineColor, double lineWidth = 1)
         {
             if(Device.RuntimePlatform == Device.Android)
@@ -103,6 +111,18 @@ namespace SinTrafico.Xamarin.Forms.Extensions
                                     map.Pins.Add(gasStationPin);
                                 }
                             }
+                            if (request.UserPois.HasValue && request.UserPois.Value && poisData.UserPois != null)
+                            {
+                                foreach (var userPoi in poisData.UserPois)
+                                {
+                                    var userPoiPin = new SinTraficoPin();
+                                    userPoiPin.Label = userPoi.Name;
+                                    userPoiPin.Address = userPoi.Category;
+                                    userPoiPin.Icon = ServiceClient.DEFAULT_ICON_URL;
+                                    userPoiPin.Position = new FormsPosition(userPoi.Geometry.Coordinates[1], userPoi.Geometry.Coordinates[0]);
+                                    map.Pins.Add(userPoiPin);
+                                }
+                            }
                         }
                     }
                 }
@@ -110,6 +130,12 @@ namespace SinTrafico.Xamarin.Forms.Extensions
             return response;
         }
 
+        /// <summary>
+        /// Loads the pois async.
+        /// </summary>
+        /// <returns>The pois response.</returns>
+        /// <param name="map">Map.</param>
+        /// <param name="request">Request.</param>
         public static async Task<Response<PoiResponse>> LoadPoisAsync(this SinTraficoMap map, PoiRequest request)
         {
             var service = new PoisServiceClient();

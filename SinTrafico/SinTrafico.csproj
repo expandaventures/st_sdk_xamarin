@@ -56,6 +56,8 @@
     <Compile Include="Responses\RouteResponse.cs" />
     <Compile Include="ServiceClient.cs" />
     <Compile Include="Helpers\DescriptionAttribute.cs" />
+    <Compile Include="Models\UserPoi.cs" />
+    <Compile Include="Models\Metadata.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

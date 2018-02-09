@@ -19,5 +19,11 @@ namespace SinTrafico
 
         [JsonProperty("address")]
         public string Address { get; set; }
+
+        [JsonProperty("eta")]
+        public double Eta { get; set; }
+
+        [JsonProperty("distance")]
+        public double Distance { get; set; }
     }
 }

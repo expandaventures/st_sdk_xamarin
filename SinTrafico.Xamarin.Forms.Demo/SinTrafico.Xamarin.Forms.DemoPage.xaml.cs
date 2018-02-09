@@ -17,14 +17,19 @@ namespace SinTrafico.Xamarin.Forms.Demo
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            var routeRequest = new RouteRequest(new Position(19.29883, -99.39606));
-            routeRequest.End = new Position(19.41360, -99.14660);
-            routeRequest.Parkings = true;
-            routeRequest.Tolls = true;
-            routeRequest.GasStations = true;
-            routeRequest.VehicleType = VehicleType.Car;
-            routeRequest.Transport = TransportType.Car;
-            await myMap.LoadRouteAsync(routeRequest, Color.DeepPink, 10);
+
+            SinTrafico.ServiceClient.SetApiKey("03ba35e5261a92e0948b1620290e6408ea183e3c4c11affcd02e16fb15fd312c");
+
+            var routeRequest = new RouteRequest(new Position(25.735432, -100.403001));
+            routeRequest.End = new Position(25.723423, -100.394087);
+            //routeRequest.Parkings = true;
+            //routeRequest.Tolls = true;
+            //routeRequest.GasStations = true;
+            routeRequest.UserPois = true;
+            routeRequest.Distance = 100;
+            //routeRequest.VehicleType = VehicleType.Car;
+            //routeRequest.Transport = TransportType.Car;
+            var routeResponse = await myMap.LoadRouteAsync(routeRequest, Color.DeepPink, 10);
 
             SinTrafico.ServiceClient.SetApiKey("a816b7b3cc5314fd70bf9188f2cf1d7c9972eda55f2151e4d2d1151f4fa64dff");
             var poiRequest = new PoiRequest();

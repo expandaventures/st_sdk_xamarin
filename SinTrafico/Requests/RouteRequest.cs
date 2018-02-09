@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SinTrafico.Helpers;
 
 namespace SinTrafico
@@ -45,7 +46,7 @@ namespace SinTrafico
         /// Waypoints to be included in route.
         /// </summary>
         /// <value>WayPoints</value>
-        public Position WayPoint { get; set; }
+        public List<Position> WayPoints { get; set; }
 
         /// <summary>
         /// If true, route will be saved to user's profile
@@ -64,6 +65,12 @@ namespace SinTrafico
         /// </summary>
         /// <value>GasStations</value>
         public bool? GasStations { get; set; }
+
+        /// <summary>
+        /// If true, User pois information will be included if any.
+        /// </summary>
+        /// <value>The user pois.</value>
+        public bool? UserPois { get; set; }
 
         /// <summary>
         /// Indicate the price that should be used to calculate toll total
@@ -119,6 +126,12 @@ namespace SinTrafico
         /// <value>Alternatives</value>
         public bool? Alternatives { get; set; }
 
+        /// <summary>
+        /// Gets or sets the distance.
+        /// </summary>
+        /// <value>The distance.</value>
+        public double? Distance { get; set; }
+
         public override string BuildQuery()
         {
             var query = $"?key={ServiceClient.ApiKey}";
@@ -142,25 +155,32 @@ namespace SinTrafico
             {
                 query += $"&optimize={Optimize.Value}";
             }
-            if (WayPoint != null)
+            if (WayPoints != null && WayPoints.Any())
             {
-                query += $"&wp[]={WayPoint.ToString()}";
+                foreach (var wayPoint in WayPoints)
+                {
+                    query += $"&wp[]={wayPoint.ToString()}";
+                }
             }
             if (Save.HasValue)
             {
                 query += $"&save={Save.Value}";
             }
-            if (Parkings.HasValue)
+            if (Parkings.HasValue && Parkings.Value)
             {
                 query += $"&poi_in[]=0";
             }
-            if (Tolls.HasValue)
+            if (Tolls.HasValue && Tolls.Value)
             {
                 query += $"&poi_in[]=1";
             }
-            if (GasStations.HasValue)
+            if (GasStations.HasValue && GasStations.Value)
             {
                 query += $"&poi_in[]=2";
+            }
+            if (UserPois.HasValue && UserPois.Value)
+            {
+                query += $"&poi_in[]=4";
             }
             if(VehicleType.HasValue)
             {
@@ -193,6 +213,10 @@ namespace SinTrafico
             if (Alternatives.HasValue)
             {
                 query += $"&alternatives={Alternatives.Value}";
+            }
+            if (Distance.HasValue)
+            {
+                query += $"&distance={Distance.Value}";
             }
             return query;
         }
